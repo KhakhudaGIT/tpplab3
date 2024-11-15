@@ -1,0 +1,189 @@
+/* Загальні стилі */
+body {
+  font-family: 'Palatino', serif;
+  font-weight: 300;
+  font-style: italic;
+  background-color: #a484fc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  display: flex;
+  justify-content: center; /* Горизонтальне вирівнювання */
+  align-items: center; /* Вертикальне вирівнювання */
+  min-height: 100vh; /* Висота на всю сторінку */
+}
+
+/* Контейнер */
+.container {
+    max-width: 900px;
+    margin:0 auto 0 auto;
+    padding: 30px 20px;
+    background-color: #dcd0fd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовки */
+h1, h2, h3 {
+    color: #37474F;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стилі форм */
+.form-container {
+
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.form-container label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #5f6368;
+}
+
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dfe1e5;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* Стилі таблиць */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+td:last-child{
+    display: flex;
+    flex-direction: column;
+}
+
+table th {
+    background-color: #f1f1f1;
+    color: #5f6368;
+}
+
+table tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+table tr:nth-child(odd) {
+    background-color: #dedddd;
+}
+
+/* Стилі для кнопок */
+.button {
+    display: inline-block;
+    background-color: #6200ee;
+    color: #dcd0fd;;
+    text-decoration: none;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Окремі стилі для кнопок редагування та видалення */
+.button.edit {
+    width: 60px;
+    margin: 3px;
+}
+  
+.button.back{
+margin-top: 25px;
+}
+
+.button.delete {
+    width: 60px;
+    margin: 3px;
+    background-color: #d32f2f;
+}
+
+.button.delete:hover {
+    background-color: #b71c1c;
+}
+
+/* Стилі для таблиці та вирівнювання кнопок в рядок */
+table td {
+    text-align: center; /* Центрування кнопок всередині <td> */
+}
+
+/* Адаптивність для кнопок */
+@media (max-width: 600px) {
+    .button {
+        padding: 8px 20px;
+    }
+}
+/* Стилі навігації */
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px;
+}
+
+.avatar:hover {
+    transform: scale(1.1); /* Збільшує зображення на 10% при наведенні */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Тінь при наведенні */
+}
+
+.error{
+    color: red;
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+    .container, .form-container {
+        padding: 15px;
+    }
+
+    table th, table td {
+        padding: 8px;
+    }
+
+    .button {
+        padding: 8px 20px;
+    }
+}

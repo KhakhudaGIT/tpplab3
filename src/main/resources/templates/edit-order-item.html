@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Order Item</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Order Item</h1>
+        <form th:action="@{/order-items/update/{id}(id=${orderItem.orderItemId})}" th:object="${orderItem}" method="post" class="form-container">
+
+            <label for="order">Order:</label>
+            <select id="order" th:field="*{order.orderId}" required>
+                <option value="" disabled>Select Order</option>
+                <option th:each="order : ${orders}" 
+                        th:value="${order.orderId}" 
+                        th:selected="${order.orderId == orderItem.order.orderId}" 
+                        th:text="${'Order ID: ' + order.orderId}">
+                </option>
+            </select>
+            <div th:if="${#fields.hasErrors('order.orderId')}" class="error-message">
+                <p th:errors="*{order.orderId}">Order error</p>
+            </div>
+
+            <label for="menuItem">Menu Item:</label>
+            <select id="menuItem" th:field="*{menuItem.menuItemId}" required>
+                <option value="" disabled>Select Menu Item</option>
+                <option th:each="menuItem : ${menuItems}" 
+                        th:value="${menuItem.menuItemId}" 
+                        th:selected="${menuItem.menuItemId == orderItem.menuItem.menuItemId}" 
+                        th:text="${menuItem.name}">
+                </option>
+            </select>
+            <div th:if="${#fields.hasErrors('menuItem.menuItemId')}" class="error-message">
+                <p th:errors="*{menuItem.menuItemId}">Menu Item error</p>
+            </div>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" th:field="*{quantity}" min="1" required />
+            <div th:if="${#fields.hasErrors('quantity')}" class="error-message">
+                <p th:errors="*{quantity}">Quantity error: must be greater than 0</p>
+            </div>
+
+            <button type="submit" class="button">Update</button>
+        </form>
+        <a href="/order-items" class="button back">Back to Order Items</a>
+    </div>
+</body>
+</html>

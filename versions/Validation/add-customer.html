@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Customer</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Add Customer</h1>
+        <form th:action="@{/customers/add}" th:object="${customer}" method="post" class="form-container">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" th:field="*{surname}" required />
+            <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></div>
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" th:field="*{phone}" required />
+            <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="error"></div>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" required />
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+
+            <button type="submit" class="button">Save</button>
+        </form>
+        <a href="/customers" class="button back">Back to Customers</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restaurant Management</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container" style = "text-align: center;">
+        <a href="https://github.com/KhakhudaGIT" target="_blank"> 
+            <img src="https://avatars.githubusercontent.com/u/155074739?v=4" alt="Моя аватарка" class="avatar">
+        </a>
+        
+        <h1>Welcome to my project</h1>
+        <h2>This project about usage Data Base in web-application in java</h2>
+        <h3>Manage your restaurant's data easily with this web app.</h3>
+        
+        <div class="navigation">
+            <a th:href="@{/customers}" class="button">Customers</a>
+            <a th:href="@{/menu-items}" class="button">Menu Items</a>
+            <a th:href="@{/orders}" class="button">Orders</a>
+            <a th:href="@{/order-items}" class="button">Order Items</a>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Menu Item</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Menu Item</h1>
+
+        <form th:action="@{/menu-items/update/{id}(id=${menuItem.menuItemId})}" th:object="${menuItem}" method="post" class="form-container">
+            <input type="hidden" th:field="*{menuItemId}" />
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+            <div th:if="${#fields.hasErrors('name')}" class="error-message">
+                <p th:errors="*{name}">Name error</p>
+            </div>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" th:field="*{price}" required />
+            <div th:if="${#fields.hasErrors('price')}" class="error-message">
+                <p th:errors="*{price}">Price error</p>
+            </div>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" th:field="*{category}" required />
+            <div th:if="${#fields.hasErrors('category')}" class="error-message">
+                <p th:errors="*{category}">Category error</p>
+            </div>
+
+            <button type="submit" class="button">Update</button>
+        </form>
+        <a href="/menu-items" class="button back">Back to Menu Items</a>
+    </div>
+</body>
+</html>

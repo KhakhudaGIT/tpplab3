@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customers</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Customers</h1>
+        
+        <form action="/customers/execute-query" method="post" class="form-container">
+            <label for="sqlQuery">Enter SQL Query:</label>
+            <input type="text" id="sqlQuery" name="sqlQuery" placeholder="Enter SQL Query" required>
+            <button type="submit">Execute Query</button>
+        </form>
+
+        <!-- Display query results only if queryResult is not empty -->
+        <div th:if="${queryResult != null && !queryResult.isEmpty()}">
+            <h2>Query Result:</h2>
+            <table>
+                <thead>
+                    <th th:each="column : ${queryResult[0].keySet()}" th:text="${column}">
+                    </th>
+                </thead>
+                <tbody>
+                    <tr th:each="row : ${queryResult}">
+                        <td th:each="cell : ${row.values()}" th:text="${cell}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- If no results to display -->
+        <div th:if="${queryResult == null || queryResult.isEmpty()}">
+            <p>No results to display. Please enter a valid SQL query.</p>
+        </div>
+
+        <div th:if="${message}">
+            <p th:text="${message}"></p>
+        </div>
+        <div th:if="${errorMessage}">
+            <p style="color:red;" th:text="${errorMessage}"></p>
+        </div>        
+
+        <a href="/home" class="button back">Back to Home</a>
+    </div>
+</body>
+</html>

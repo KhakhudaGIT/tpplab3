@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Menu Item</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Add Menu Item</h1>
+        <form th:action="@{/menu-items/add}" th:object="${menuItem}" method="post" class="form-container">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" th:field="*{price}" required />
+            <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></div>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" th:field="*{category}" required />
+            <div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error"></div>
+
+            <button type="submit" class="button">Save</button>
+        </form>
+        <a href="/menu-items" class="button back">Back to Menu Items</a>
+    </div>
+</body>
+</html>

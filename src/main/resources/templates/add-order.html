@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Order</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Add Order</h1>
+        <form th:action="@{/orders/add}" th:object="${order}" method="post" class="form-container">
+            <!-- Відображення помилок для поля customer -->
+            <div th:if="${#fields.hasErrors('customer')}" class="error">
+                <span th:errors="*{customer}">Customer Error</span>
+            </div>
+            <label for="customer">Customer:</label>
+            <select id="customer" th:field="*{customer.customerId}" required>
+                <option value="" disabled selected>Select Customer</option>
+                <option th:each="customer : ${customers}" 
+                        th:value="${customer.customerId}" 
+                        th:text="${customer.name + ' ' + customer.surname + ' (ID: ' + customer.customerId + ')'}">
+                </option>
+            </select>
+
+            <!-- Відображення помилок для поля orderDate -->
+            <div th:if="${#fields.hasErrors('orderDate')}" class="error">
+                <span th:errors="*{orderDate}">Order Date Error</span>
+            </div>
+            <label for="orderDate">Order Date:</label>
+            <input type="date" id="orderDate" th:field="*{orderDate}" required
+                   max="[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]" />
+
+            <button type="submit" class="button">Save</button>
+        </form>
+        <a href="/orders" class="button back">Back to Orders</a>
+    </div>
+</body>
+</html>

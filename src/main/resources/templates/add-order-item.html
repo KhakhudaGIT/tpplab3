@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Order Item</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Add Order Item</h1>
+        <form th:action="@{/order-items/add}" th:object="${orderItem}" method="post" class="form-container">
+            <label for="order">Order:</label>
+            <select id="order" th:field="*{order.orderId}" required>
+                <option value="" disabled selected>Select Order</option>
+                <option th:each="order : ${orders}" th:value="${order.orderId}" th:text="${'Order ID: ' + order.orderId}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('order.orderId')}" th:errors="*{order.orderId}" class="error"></div>
+
+            <label for="menuItem">Menu Item:</label>
+            <select id="menuItem" th:field="*{menuItem.menuItemId}" required>
+                <option value="" disabled selected>Select Menu Item</option>
+                <option th:each="menuItem : ${menuItems}" th:value="${menuItem.menuItemId}" th:text="${menuItem.name}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('menuItem.menuItemId')}" th:errors="*{menuItem.menuItemId}" class="error"></div>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" th:field="*{quantity}"  required />
+            <div th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error"></div>
+
+            <button type="submit" class="button">Add</button>
+        </form>
+        <a href="/order-items" class="button back">Back to Order Items</a>
+    </div>
+</body>
+</html>

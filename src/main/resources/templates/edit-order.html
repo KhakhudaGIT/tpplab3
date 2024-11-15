@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Order</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Order</h1>
+
+        <form action="#" th:action="@{/orders/update/{id}(id=${order.orderId})}" th:object="${order}" method="post" class="form-container">
+            <input type="hidden" th:field="*{orderId}" />
+
+            <div th:if="${#fields.hasErrors('customer')}" class="error">
+                <span th:errors="*{customer}">Customer Error</span>
+            </div>
+            <label for="customerId">Customer:</label>
+            <select id="customer_id" th:field="*{customer.customerId}" required>
+                <option value="" disabled selected>Select Customer</option>
+                <option th:each="customer : ${customers}" 
+                        th:value="${customer.customerId}" 
+                        th:text="${customer.name + ' ' + customer.surname + ' (ID: ' + customer.customerId + ')'}">
+                </option>
+            </select>
+
+            <div th:if="${#fields.hasErrors('orderDate')}" class="error">
+                <span th:errors="*{orderDate}">Order Date Error</span>
+            </div>
+            <label for="orderDate">Order Date:</label>
+            <input type="date" id="orderDate" th:field="*{orderDate}" required
+                   max="[[${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}]]" />
+
+            <button type="submit" class="button">Update</button>
+        </form>
+        <a href="/orders" class="button back">Back to Orders</a>
+    </div>
+</body>
+</html>
